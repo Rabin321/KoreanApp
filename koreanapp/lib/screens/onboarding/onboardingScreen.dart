@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:koreanapp/resources/colorManager.dart';
 
+import '../../routes/routes_manager.dart';
 import '../../utils/screenconfig.dart';
 import '../onboarding_contents.dart';
+import '../presentation/signup/signup.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -73,7 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     return Container(
                       // color: colors[i],
                       child: Padding(
-                        padding: const EdgeInsets.all(40.0),
+                        padding: EdgeInsets.all(15.h),
                         child: Column(
                           children: [
                             Image.asset(
@@ -101,6 +103,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 fontSize: (width <= 550) ? 20 : 26,
                               ),
                               textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 10.h,
                             )
                           ],
                         ),
@@ -123,19 +128,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     _currentPage + 1 == contents.length
                         ? Padding(
-                            padding: const EdgeInsets.all(30),
+                            padding: EdgeInsets.all(30.h),
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const Text("Hello");
-                                  // return const RegisterPage();
-                                }));
+                                Navigator.pushNamed(context, Routes.signUp);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50),
+                                  borderRadius: BorderRadius.circular(50.r),
                                 ),
                                 padding: (width <= 550)
                                     ? const EdgeInsets.symmetric(
