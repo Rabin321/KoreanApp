@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1041137681162",
+    "project_id": "korean-app-a4615",
+    "storage_bucket": "korean-app-a4615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041137681162:android:709679076acdde9dc9f0f3",
+        "android_client_info": {
+          "package_name": "com.example.koreanapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmeZUSxp9cIXtohDj2vQQx2hTG5JNnil0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

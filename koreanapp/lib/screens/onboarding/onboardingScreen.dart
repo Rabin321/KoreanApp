@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:koreanapp/resources/colorManager.dart';
 
+import '../../routes/routes_manager.dart';
 import '../../utils/screenconfig.dart';
 import '../onboarding_contents.dart';
+import '../presentation/signup/signup.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -129,11 +131,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             padding: EdgeInsets.all(30.h),
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const Text("Hello");
-                                  // return const RegisterPage();
-                                }));
+                                Navigator.pushNamed(context, Routes.signUp);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black,
