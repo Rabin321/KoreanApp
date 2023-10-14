@@ -80,9 +80,9 @@ class _BackgroungWidState extends State<BackgroungWid> {
               left: 0,
               right: 0,
               child: Container(
-                height: context.deviceHeight - 120.h,
+                height: context.deviceHeight - 140.h,
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: ColorManager.primary,
                   // borderRadius: BorderRadius.only(
                   //     topLeft: Radius.circular(40.r),
                   //     topRight: Radius.circular(40.r))

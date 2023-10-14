@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:koreanapp/resources/colorManager.dart';
 import 'package:koreanapp/services/app_extension.dart';
 
 import '../../../../services/appcolors.dart';
+
 class HorizontalItem extends StatefulWidget {
   final String label1, image1;
   final Function()? onTap;
@@ -26,7 +27,7 @@ class _HorizontalItemState extends State<HorizontalItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap ?? () {},
+      onTap: widget.onTap,
       // child: Container(
       //   //children: [
       //   child:
@@ -73,12 +74,12 @@ class _BoxWidState extends State<BoxWid> {
       margin: EdgeInsets.only(left: 4.h, bottom: 20.h),
       width: 125.h,
       decoration: BoxDecoration(
-          color: AppColors.white,
+          color: ColorManager.primary,
           boxShadow: const [
             BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.12),
-                blurRadius: 6.0,
-                offset: Offset(0, 2))
+                blurRadius: 40.0,
+                offset: Offset(0, 4))
           ],
           borderRadius: BorderRadius.all(Radius.circular(20.r))),
       child: Column(
@@ -97,47 +98,10 @@ class _BoxWidState extends State<BoxWid> {
               widget.label,
               style: context.text.headlineMedium!.copyWith(
                   fontSize: 16.sp,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold),
+                  color: ColorManager.dashboardTitleColor,
+                  fontWeight: FontWeight.w400),
             ),
           ]),
-    );
-  }
-}
-
-// news box for dashboard
-class NewsBox extends StatefulWidget {
-  const NewsBox({super.key});
-
-  @override
-  State<NewsBox> createState() => _NewsBoxState();
-}
-
-class _NewsBoxState extends State<NewsBox> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 15.h,
-      width: 15.h,
-      decoration: BoxDecoration(
-          color: AppColors.primary,
-          boxShadow: const [
-            BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.12),
-                blurRadius: 6.0,
-                offset: Offset(0, 2))
-          ],
-          borderRadius: BorderRadius.all(Radius.circular(20.r))),
-      // child: Expanded(
-      //   child: Row(children: [
-      //     Container(
-      //       child: Text(
-      //         "dfghjk",
-      //         style: TextStyle(color: Colors.black),
-      //       ),
-      //     )
-      //   ]),
-      // ),
     );
   }
 }

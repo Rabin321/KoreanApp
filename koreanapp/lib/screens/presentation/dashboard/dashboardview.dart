@@ -3,12 +3,16 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:koreanapp/screens/presentation/dashboard/dictionary/dictionary.dart';
+import 'package:koreanapp/screens/presentation/dashboard/grammar/grammarview.dart';
 
-import 'package:flutter/material.dart';
 import 'package:koreanapp/services/app_extension.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
+import '../../../resources/colorManager.dart';
+import '../../../routes/routes_manager.dart';
 import '../../../services/app_images.dart';
 import '../../../services/appcolors.dart';
 import '../../../widgets/background.dart';
@@ -109,12 +113,12 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  final FlutterTts flutterTts = FlutterTts();
-  speak(String text) async {
-    await flutterTts.setLanguage("en-US");
-    await flutterTts.setPitch(1);
-    await flutterTts.speak(text);
-  }
+  // final FlutterTts flutterTts = FlutterTts();
+  // speak(String text) async {
+  //   await flutterTts.setLanguage("en-US");
+  //   await flutterTts.setPitch(1);
+  //   await flutterTts.speak(text);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +142,7 @@ class _DashboardState extends State<Dashboard> {
               children: [
                 CircleAvatar(
                   radius: 20.h,
-                  backgroundColor: AppColors.white,
+                  backgroundColor: AppColors.primary,
                   child: CircleAvatar(
                     radius: 23.h,
                     backgroundImage: NetworkImage(FirebaseAuth
@@ -215,50 +219,51 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),
           ),
-          Row(
-            children: [],
-          ),
         ],
       ),
+
       child: ListView(padding: EdgeInsets.all(15.h), children: [
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            HorizontalItem(
-              onTap: () {
-                speak('Care');
-                // baaakiii
-              },
-              label1: "Care",
-              image1: AppImagePath.signIn,
-            ),
-            // SizedBox(
-            //   width: 22.h,
-            // ),
-            HorizontalItem(
-              onTap: () {
-                speak('notice');
-              },
-              label1: "Notice",
-              image1: AppImagePath.signIn,
-            ),
+            PerformanceInfoCard(),
           ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 15.w, bottom: 20.h),
+          child: Row(
+            children: [
+              Text(
+                "Our Services",
+                style: TextStyle(
+                    color: ColorManager.dashboardTitleColor,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20.sp),
+              )
+            ],
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             HorizontalItem(
               onTap: () {
-                speak('News');
+                // speak('News');
               },
-              label1: "News",
+              label1: "UBT Test",
               image1: AppImagePath.signUP,
             ),
             HorizontalItem(
               onTap: () {
-                speak('FAQS');
+                // speak('FAQS');
+                print("grammar tapped");
+                // Navigator.pushNamed(context, Routes.grammarView);
+
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const GrammarView();
+                }));
               },
-              label1: "FAQs",
+              label1: "Grammar",
               image1: AppImagePath.signIn,
             ),
           ],
@@ -268,21 +273,162 @@ class _DashboardState extends State<Dashboard> {
           children: [
             HorizontalItem(
               onTap: () {
-                speak('Discussion');
+                // speak('Discussion');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const DictionaryView();
+                }));
               },
-              label1: "Discussion",
+              label1: "Dictionary",
               image1: AppImagePath.signIn,
             ),
             HorizontalItem(
               onTap: () {
-                speak('Vocational');
+                // speak('Vocational');
               },
-              label1: "Vocational",
+              label1: "Discussion",
               image1: AppImagePath.signUP,
             ),
           ],
         ),
       ]),
+    );
+  }
+}
+
+class PerformanceInfoCard extends StatelessWidget {
+  const PerformanceInfoCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 30.h),
+      child: Container(
+        width: 300.w,
+        height: 190.h,
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          borderRadius: BorderRadius.circular(10.0.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // Shadow color
+              spreadRadius: 2, // Spread radius
+              blurRadius: 5, // Blur radius
+              offset: const Offset(0, 3), // Offset
+            ),
+          ], // Replace with your desired background color
+          // Adjust the value to control the roundness
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(12.w),
+          child: Column(
+            mainAxisAlignment:
+                MainAxisAlignment.spaceBetween, // Align children to the left
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Your Performance",
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w400,
+                        color: ColorManager.dashboardTitleColor),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      SvgPicture.asset(
+                        AppImagePath.signIn,
+                        height: 40.h,
+                        width: 40.w,
+                        // color: AppColors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.h, bottom: 15.h),
+                        child: Text(
+                          "7",
+                          style: TextStyle(
+                              color: ColorManager.dashboardTitleColor,
+                              fontSize: 15.sp),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: Text(
+                          "Reward Points",
+                          style: TextStyle(
+                              color: ColorManager.dashboardTitleColor,
+                              fontSize: 12.sp),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: SvgPicture.asset(
+                          AppImagePath.circle,
+                          height: 70.h,
+                          width: 70.w,
+                          // color: AppColors.red,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 15.h,
+                        ),
+                        child: Text(
+                          "Last Test Score",
+                          style: TextStyle(
+                              color: ColorManager.dashboardTitleColor,
+                              fontSize: 12.sp),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //
+                  Column(
+                    children: [
+                      SvgPicture.asset(
+                        AppImagePath.signIn,
+                        height: 40.h,
+                        width: 40.w,
+                        // color: AppColors.red,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.h, bottom: 15.h),
+                        child: Text(
+                          "5/100",
+                          style: TextStyle(
+                              color: ColorManager.dashboardTitleColor,
+                              fontSize: 15.sp),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: Text(
+                          "Average Score",
+                          style: TextStyle(
+                              color: ColorManager.dashboardTitleColor,
+                              fontSize: 12.sp),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

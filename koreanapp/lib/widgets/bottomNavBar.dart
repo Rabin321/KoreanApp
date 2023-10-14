@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../resources/colorManager.dart';
 import '../screens/presentation/dashboard/dashboardview.dart';
+import '../services/app_images.dart';
 
 class HomeBottomNavBar extends StatelessWidget {
   const HomeBottomNavBar({super.key});
@@ -20,7 +22,7 @@ class HomeBottomNavBar extends StatelessWidget {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: ColorManager.primary, // Default is Colors.white.
+      backgroundColor: ColorManager.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
           true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -29,9 +31,9 @@ class HomeBottomNavBar extends StatelessWidget {
       decoration: NavBarDecoration(
         adjustScreenBottomPaddingOnCurve: true,
         borderRadius: BorderRadius.circular(10.0.r),
-        colorBehindNavBar: ColorManager.primary,
+        colorBehindNavBar: ColorManager.white,
       ),
-      margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 10.h),
+      // margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 10.h),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: const ItemAnimationProperties(
@@ -45,7 +47,7 @@ class HomeBottomNavBar extends StatelessWidget {
         curve: Curves.ease,
         duration: Duration(milliseconds: 500),
       ),
-      navBarStyle: NavBarStyle.style7,
+      navBarStyle: NavBarStyle.style2, //style2,  style6, 8
     );
   }
 }
@@ -55,39 +57,59 @@ List<Widget> _buildScreens() {
     const Dashboard(),
     const Dashboard(),
     const Dashboard(),
+    const Dashboard(),
+    const Dashboard(),
   ];
 }
 
 List<PersistentBottomNavBarItem> _navBarsItems() {
   return [
     PersistentBottomNavBarItem(
-      icon: const Icon(
-        CupertinoIcons.home,
-        // color: ColorManager.white,
+      icon: Icon(
+        Icons.home,
+        size: 20.h,
+        //SvgPicture.asset(AppImagePath.bottomnav1
       ),
+
       title: "Home",
       textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
 
       // activeColorPrimary: CupertinoColors.activeBlue,
-      activeColorSecondary: ColorManager.primary,
-      inactiveColorPrimary: ColorManager.white,
-      inactiveColorSecondary: ColorManager.white,
+      activeColorSecondary: ColorManager.appbarColor,
+      inactiveColorPrimary: ColorManager.black,
+      inactiveColorSecondary: ColorManager.black,
     ),
     PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.square_list),
+      icon: Icon(Icons.book_sharp, size: 20.h),
       title: "Activities",
       textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
-      activeColorSecondary: ColorManager.primary,
-      inactiveColorPrimary: ColorManager.white,
-      inactiveColorSecondary: ColorManager.white,
+      activeColorSecondary: ColorManager.appbarColor,
+      inactiveColorPrimary: ColorManager.black,
+      inactiveColorSecondary: ColorManager.black,
     ),
     PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.settings),
+      icon: Icon(Icons.find_in_page, size: 20.h),
       title: "Settings",
       textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
-      activeColorSecondary: ColorManager.primary,
-      inactiveColorPrimary: ColorManager.white,
-      inactiveColorSecondary: ColorManager.white,
+      activeColorSecondary: ColorManager.appbarColor,
+      inactiveColorPrimary: ColorManager.black,
+      inactiveColorSecondary: ColorManager.black,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(Icons.event_note_sharp, size: 20.h),
+      title: "Settings 4",
+      textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      activeColorSecondary: ColorManager.appbarColor,
+      inactiveColorPrimary: ColorManager.black,
+      inactiveColorSecondary: ColorManager.black,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(Icons.track_changes_outlined, size: 20.h),
+      title: "Settings 5",
+      textStyle: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+      activeColorSecondary: ColorManager.appbarColor,
+      inactiveColorPrimary: ColorManager.black,
+      inactiveColorSecondary: ColorManager.black,
     ),
   ];
 }
