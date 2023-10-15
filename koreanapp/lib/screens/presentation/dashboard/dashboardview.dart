@@ -7,6 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:koreanapp/screens/presentation/dashboard/dictionary/dictionary.dart';
 import 'package:koreanapp/screens/presentation/dashboard/grammar/grammarview.dart';
+import 'package:koreanapp/screens/presentation/discussion/discussion.dart';
+import 'package:koreanapp/screens/profile/user_profile.dart';
 
 import 'package:koreanapp/services/app_extension.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -140,14 +142,22 @@ class _DashboardState extends State<Dashboard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(
-                  radius: 20.h,
-                  backgroundColor: AppColors.primary,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Profile();
+                    }));
+                  },
                   child: CircleAvatar(
-                    radius: 23.h,
-                    backgroundImage: NetworkImage(FirebaseAuth
-                            .instance.currentUser!.photoURL ??
-                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
+                    radius: 20.h,
+                    backgroundColor: AppColors.primary,
+                    child: CircleAvatar(
+                      radius: 23.h,
+                      backgroundImage: NetworkImage(FirebaseAuth
+                              .instance.currentUser!.photoURL ??
+                          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
+                    ),
                   ),
                 ),
                 Text(
@@ -284,6 +294,9 @@ class _DashboardState extends State<Dashboard> {
             HorizontalItem(
               onTap: () {
                 // speak('Vocational');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Discussion();
+                }));
               },
               label1: "Discussion",
               image1: AppImagePath.signUP,

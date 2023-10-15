@@ -27,4 +27,7 @@ class AppImagePath {
   static const String bottomnav3 = "assets/images/bottomnav3.svg";
   static const String bottomnav4 = "assets/images/bottomnav4.svg";
   static const String bottomnav5 = "assets/images/bottomnav5.svg";
+
+    static const String addDiscussion = "assets/addDiscussion.svg";
+
 }

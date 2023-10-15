@@ -22,7 +22,7 @@ class CustomBackButton extends StatelessWidget {
       //   color: Colors.transparent,
 
       child: Padding(
-        padding: EdgeInsets.only(top: 20.h, bottom: 0.h),
+        padding: EdgeInsets.only(top: 10.h, bottom: 0.h),
         child: Row(
           // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

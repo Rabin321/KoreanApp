@@ -76,7 +76,7 @@ class _BackgroungWidState extends State<BackgroungWid> {
         // ),
         Stack(children: [
           Positioned(
-              top: 90.h,
+              top: 110.h,
               left: 0,
               right: 0,
               child: Container(
