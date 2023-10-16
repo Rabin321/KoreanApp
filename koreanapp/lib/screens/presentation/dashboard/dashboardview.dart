@@ -7,6 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:koreanapp/screens/presentation/dashboard/dictionary/dictionary.dart';
 import 'package:koreanapp/screens/presentation/dashboard/grammar/grammarview.dart';
+import 'package:koreanapp/screens/presentation/dashboard/practice/practice.dart';
+import 'package:koreanapp/screens/presentation/dashboard/ubt_Test/ubt_test.dart';
 import 'package:koreanapp/screens/presentation/discussion/discussion.dart';
 import 'package:koreanapp/screens/profile/user_profile.dart';
 
@@ -259,6 +261,9 @@ class _DashboardState extends State<Dashboard> {
             HorizontalItem(
               onTap: () {
                 // speak('News');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const UbtTest();
+                }));
               },
               label1: "UBT Test",
               image1: AppImagePath.signUP,
@@ -300,6 +305,34 @@ class _DashboardState extends State<Dashboard> {
               },
               label1: "Discussion",
               image1: AppImagePath.signUP,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            HorizontalItem(
+              onTap: () {
+                // speak('News');
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Practice();
+                }));
+              },
+              label1: "Practice",
+              image1: AppImagePath.signUP,
+            ),
+            HorizontalItem(
+              onTap: () {
+                // speak('FAQS');
+                print("grammar tapped");
+                // Navigator.pushNamed(context, Routes.grammarView);
+
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const GrammarView();
+                }));
+              },
+              label1: "Others",
+              image1: AppImagePath.signIn,
             ),
           ],
         ),

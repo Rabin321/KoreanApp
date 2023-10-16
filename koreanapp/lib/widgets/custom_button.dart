@@ -68,3 +68,68 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+
+// button for ubttext
+
+class UbtButton extends StatelessWidget {
+  // final FormValidators formValidators;
+  final VoidCallback onPressed;
+  final String buttonText;
+  final Color buttonColor;
+  final Color textColor;
+
+  final double? width;
+  final double? height;
+  final double? borderRadius;
+  final double? fontSize;
+  final FontWeight? fontWeight;
+
+  const UbtButton({
+    Key? key,
+    // required this.formValidators,
+    required this.onPressed,
+    required this.buttonText,
+    this.buttonColor = AppColors.buttonColor2,
+    this.textColor = AppColors.white,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.fontSize,
+    this.fontWeight,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.h, left: 20.w, right: 20.w),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: Text(
+          buttonText,
+          style: context.text.headlineSmall!.copyWith(
+            fontSize: fontSize ?? 14.sp,
+            color: textColor,
+            fontWeight: fontWeight ?? FontWeight.w600,
+            letterSpacing: 0.5,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(buttonColor),
+          foregroundColor: MaterialStateProperty.all(textColor),
+          elevation: MaterialStateProperty.all(0),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              // side: BorderSide(color: AppColors.primary, width: 2),
+              borderRadius: BorderRadius.circular(borderRadius ?? 30.r),
+            ),
+          ),
+          maximumSize:
+              MaterialStateProperty.all(Size(double.infinity, height ?? 30.h)),
+          minimumSize:
+              MaterialStateProperty.all(Size(width ?? 25.w, height ?? 26.h)),
+        ),
+      ),
+    );
+  }
+}

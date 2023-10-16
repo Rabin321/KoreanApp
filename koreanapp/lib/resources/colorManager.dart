@@ -10,7 +10,15 @@ class ColorManager {
   static Color dashboardTitleColor = HexColor.fromHex("#0d094d");
 
   static Color grammarbox = Color.fromARGB(218, 204, 193, 231);
-  // rgba(218, 216, 255, 1);
+
+// linear gradient ubttest gold
+  static Color gold1 = HexColor.fromHex("#ade903");
+  static Color gold2 = HexColor.fromHex("#FFFFFF");
+
+  //for silver
+  static Color silver1 = HexColor.fromHex("#ccf4f6");
+  //
+  static Color ubtBox = HexColor.fromHex("#dad8ff");
 }
 
 extension HexColor on Color {
