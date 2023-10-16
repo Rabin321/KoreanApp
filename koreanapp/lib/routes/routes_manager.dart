@@ -4,12 +4,13 @@ import 'package:koreanapp/routes/string_manager.dart';
 import 'package:koreanapp/screens/auth/congrats.dart';
 import 'package:koreanapp/screens/onboarding/onboardingScreen.dart';
 import 'package:koreanapp/screens/presentation/dashboard/grammar/grammarview.dart';
+import 'package:koreanapp/screens/presentation/dashboard/ubt_Test/ubt_test.dart';
 import 'package:koreanapp/screens/presentation/signin/signin.dart';
 import 'package:koreanapp/screens/presentation/signup/signup.dart';
 import 'package:koreanapp/widgets/bottomNavBar.dart';
 
 class Routes {
-    static const String index = "/";
+  static const String index = "/";
 
   static const String signIn = "/signIn";
   static const String signUp = "/signUp";
@@ -17,6 +18,7 @@ class Routes {
   static const String congrats = "/congrats";
   static const String homeBottomNavBar = "/homeBottomNavBar";
   static const String grammarView = "/grammarView";
+  static const String ubttest = "/ubttest";
 }
 
 class RouteGenerator {
@@ -52,7 +54,10 @@ class RouteGenerator {
       case Routes.grammarView:
         return MaterialPageRoute(builder: (_) => const GrammarView());
 
+      //
 
+      case Routes.ubttest:
+        return MaterialPageRoute(builder: (_) => const UbtTest());
 
       default:
         return undefinedRoute();

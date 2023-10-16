@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:koreanapp/resources/colorManager.dart';
+import 'package:koreanapp/screens/onboarding/onboardingScreen.dart';
 import 'package:koreanapp/screens/presentation/signin/signin.dart';
 import 'package:koreanapp/screens/profile/switch_provider.dart';
 import 'package:koreanapp/services/app_extension.dart';
@@ -298,66 +299,73 @@ class _ProfileState extends State<Profile> {
             Padding(
               padding: EdgeInsets.only(left: 30.h, bottom: 15.h),
               child: Text(
-                "Information",
+                "Settings",
                 style: TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            CustomSwitchRow1(
-              // switchProvider: switchProvider1,
-              text: "Black and white",
-              value: false,
-              // value: switchProvider1
-              // .switchValue1, // Get the switch value from the provider
-              onChanged: (newValue) {
-                setState(() {
-                  // Update the switch value using the provider
-                  // switchProvider1.setSwitchValue1(newValue);
-                  print("switch value of profile is $newValue");
-                });
-              },
-            ),
-            CustomSwitchRow2(
-              // switchProvider: switchProvider2,
-              text: "Dylexia",
-              value: false,
-              // value: switchProvider2
-              // .switchValue2, // Get the switch value from the provider
-              onChanged: (newValue) {
-                setState(() {
-                  // Update the switch value using the provider
-                  // switchProvider2.setSwitchValue2(newValue);
-                  print("switch value of profile dylexia is $newValue");
-                });
-              },
-            ),
-            CustomProfileText(
-              onTap: () {},
-              customtext: "Version \t 1.0",
-              customicon: Icons.phone_android,
-            ),
+            // CustomSwitchRow1(
+            //   // switchProvider: switchProvider1,
+            //   text: "Black and white",
+            //   value: false,
+            //   // value: switchProvider1
+            //   // .switchValue1, // Get the switch value from the provider
+            //   onChanged: (newValue) {
+            //     setState(() {
+            //       // Update the switch value using the provider
+            //       // switchProvider1.setSwitchValue1(newValue);
+            //       print("switch value of profile is $newValue");
+            //     });
+            //   },
+            // ),
+            // CustomSwitchRow2(
+            //   // switchProvider: switchProvider2,
+            //   text: "Dylexia",
+            //   value: false,
+            //   // value: switchProvider2
+            //   // .switchValue2, // Get the switch value from the provider
+            //   onChanged: (newValue) {
+            //     setState(() {
+            //       // Update the switch value using the provider
+            //       // switchProvider2.setSwitchValue2(newValue);
+            //       print("switch value of profile dylexia is $newValue");
+            //     });
+            //   },
+            // ),
+            // CustomProfileText(
+            //   onTap: () {},
+            //   customtext: "Version \t 1.0",
+            //   customicon: Icons.phone_android,
+            // ),
+            // CustomProfileText(
+            //   onTap: () {
+            //     showDial(termsOfServiceContent);
+            //   },
+            //   customtext: "Terms of Service",
+            //   customicon: Icons.library_books_outlined,
+            // ),
+            // CustomProfileText(
+            //   onTap: () {
+            //     showDial1(privacyPolicyContent);
+            //   },
+            //   customtext: "Privacy Policy",
+            //   customicon: Icons.privacy_tip_outlined,
+            // ),
             CustomProfileText(
               onTap: () {
-                showDial(termsOfServiceContent);
+                showDial2(openSourceLicenseContent);
               },
-              customtext: "Terms of Service",
-              customicon: Icons.library_books_outlined,
-            ),
-            CustomProfileText(
-              onTap: () {
-                showDial1(privacyPolicyContent);
-              },
-              customtext: "Privacy Policy",
-              customicon: Icons.privacy_tip_outlined,
+              customtext: "Favourites",
+              customicon: Icons.favorite_outline,
             ),
             CustomProfileText(
               onTap: () {
                 showDial2(openSourceLicenseContent);
               },
-              customtext: "Open Source License",
-              customicon: Icons.code,
+              customtext: "Change language",
+              customicon: Icons.language,
             ),
             SizedBox(
               height: 190.h,
@@ -459,92 +467,95 @@ class _ProfileBackgroungWidState extends State<ProfileBackgroungWid> {
                         .size
                         .height, // Set a limited height
 
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: CustomBackButton(onBack: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const HomeBottomNavBar();
-                            }));
-                          }),
-                        ),
-                        CircleAvatar(
-                          radius: 32.r,
-                          backgroundColor: Colors.grey[300],
-                          // backgroundImage: userData['imageUrls'] != null
-                          //     ? NetworkImage(userData['imageUrls'])
-                          //     : (pickedImage != null &&
-                          //             pickedImage!.path.isNotEmpty)
-                          //         ? FileImage(File(pickedImage!.path))
-                          //             as ImageProvider
-                          //         : null,
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: GestureDetector(
-                              onTap: () async {
-                                await pickImage();
-                                if (pickedImage != null) {
-                                  await uploadImages();
-                                  await Userdetails.addUserImage(
-                                    widget.id,
-                                    Userdetails(
-                                      imageUrls: imageUrls,
-                                      id: widget.id,
-                                    ),
-                                  );
-                                  setState(() {
-                                    isUploading = false;
-                                  });
-                                  var prefs =
-                                      await SharedPreferences.getInstance();
-                                  var image =
-                                      prefs.setString('imageUrls', imageUrls);
-                                  print("Image is $image");
-                                }
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
+                    child: CustomPaint(
+                      painter: VennDiagramPainter(),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 20.w),
+                            child: CustomBackButton(onBack: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const HomeBottomNavBar();
+                              }));
+                            }),
+                          ),
+                          CircleAvatar(
+                            radius: 32.r,
+                            backgroundColor: Colors.grey[300],
+                            // backgroundImage: userData['imageUrls'] != null
+                            //     ? NetworkImage(userData['imageUrls'])
+                            //     : (pickedImage != null &&
+                            //             pickedImage!.path.isNotEmpty)
+                            //         ? FileImage(File(pickedImage!.path))
+                            //             as ImageProvider
+                            //         : null,
+                            child: Align(
+                              alignment: Alignment.bottomRight,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  await pickImage();
+                                  if (pickedImage != null) {
+                                    await uploadImages();
+                                    await Userdetails.addUserImage(
+                                      widget.id,
+                                      Userdetails(
+                                        imageUrls: imageUrls,
+                                        id: widget.id,
+                                      ),
+                                    );
+                                    setState(() {
+                                      isUploading = false;
+                                    });
+                                    var prefs =
+                                        await SharedPreferences.getInstance();
+                                    var image =
+                                        prefs.setString('imageUrls', imageUrls);
+                                    print("Image is $image");
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: AppColors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.add,
+                                    color: AppColors.primary,
+                                    size: 24.sp,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.userName,
+                                style: TextStyle(
                                   color: AppColors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.add,
-                                  color: AppColors.primary,
-                                  size: 24.sp,
+                                  fontSize: 18.h,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              widget.userName,
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontSize: 18.h,
-                                fontWeight: FontWeight.w600,
+                          Expanded(
+                            // Use Expanded to occupy remaining vertical space
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: ColorManager.primary,
+                                // borderRadius: BorderRadius.only(
+                                //   topLeft: Radius.circular(40),
+                                //   topRight: Radius.circular(40),
+                                // ),
                               ),
+                              child: widget.child,
                             ),
-                          ],
-                        ),
-                        Expanded(
-                          // Use Expanded to occupy remaining vertical space
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: ColorManager.primary,
-                              // borderRadius: BorderRadius.only(
-                              //   topLeft: Radius.circular(40),
-                              //   topRight: Radius.circular(40),
-                              // ),
-                            ),
-                            child: widget.child,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 })));
